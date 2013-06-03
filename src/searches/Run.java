@@ -1,4 +1,4 @@
-package time_complexity;
+package searches;
 
 
 public class Run {
