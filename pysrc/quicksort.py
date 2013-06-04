@@ -1,4 +1,4 @@
-def part(a, left, right):  # left and right are the start and end indixes of the subarray
+def partition(a, left, right):  # left and right are the start and end indexes of the subarray
     i = left + 1
     pivot = a[left]  # choose first element in subarray as pivot
      
@@ -14,10 +14,9 @@ def part(a, left, right):  # left and right are the start and end indixes of the
 
 
 def quick_sort(a, left, right):
-    if left < right:
-        pivot_pos = part(a, left, right )
-        quick_sort(a, left, pivot_pos - 1)
-        quick_sort(a, pivot_pos + 1, right)
+    pivot_pos = partition(a, left, right )
+    quick_sort(a, left, pivot_pos - 1)
+    quick_sort(a, pivot_pos + 1, right)
 
 
 if __name__ == "__main__":
