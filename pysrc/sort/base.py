@@ -6,6 +6,15 @@ class SortABC(object):
         self.is_sorted = False
 
     #===========================================================================
+    #  Common: Private
+    #===========================================================================
+    def _swap(self, ione, itwo):
+        """Given two indexes, swap them in-place in the list `self.unsorted`"""
+        tmp = self.unsorted[itwo]
+        self.unsorted[itwo] = self.unsorted[ione]
+        self.unsorted[ione] = tmp
+
+    #===========================================================================
     #  Common: Public
     #===========================================================================
     def display_results(self):

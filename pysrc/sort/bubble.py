@@ -1,15 +1,9 @@
-"""Bubble sort, in-place (mutable list): O()"""
+"""Bubble sort, in-place (mutable list): O(n^2)"""
 
 from base import SortABC
 
 
 class BubbleSort(SortABC):
-    def _swap(self, ione, itwo):
-        """Given two indexes, swap them in-place in the list `self.unsorted`"""
-        tmp = self.unsorted[itwo]
-        self.unsorted[itwo] = self.unsorted[ione]
-        self.unsorted[ione] = tmp
-
     def perform(self):
         top = len(self.unsorted) - 1
 
