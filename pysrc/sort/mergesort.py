@@ -1,45 +1,50 @@
-def merge(left, right):
-    result = []
-    i ,j = 0, 0
-    while i < len(left) and j < len(right):
-        print('left[i]: {} right[j]: {}'.format(left[i],right[j]))
-        if left[i] <= right[j]:
-            print('Appending {} to the result'.format(left[i]))           
-            result.append(left[i])
-            print('result now is {}'.format(result))
-            i += 1
-            print('i now is {}'.format(i))
-        else:
-            print('Appending {} to the result'.format(right[j]))
-            result.append(right[j])
-            print('result now is {}'.format(result))
-            j += 1
-            print('j now is {}'.format(j))
-    print('One of the list is exhausted. Adding the rest of one of the lists.')
-    result += left[i:]
-    result += right[j:]
-    print('result now is {}'.format(result))
-    return result
+"""Merge sort: O(n log n)"""
 
-def mergesort(L):
-    print('---')
-    print('mergesort on {}'.format(L))
-    if len(L) < 2:
-        print('length is 1: returning the list withouth changing')
-        return L
-    middle = len(L) / 2
-    print('calling mergesort on {}'.format(L[:middle]))
-    left = mergesort(L[:middle])
-    print('calling mergesort on {}'.format(L[middle:]))
-    right = mergesort(L[middle:])
-    print('Merging left: {} and right: {}'.format(left,right))
-    out = merge(left, right)
-    print('exiting mergesort on {}'.format(L))
-    print('#---')
-    return out
+from base import SortABC
+
+
+class MergeSort(SortABC):
+    def _merge(self, l1, l2):
+        merged = []
+        i1 = i2 = 0
+        while (i1 <= len(l1) - 1) and (i2 <= len(l2) - 1):
+            if l1[i1] > l2[i2]:
+                merged.append(l2[i2])
+                i2 += 1
+            else:
+                merged.append(l1[i1])
+                i1 += 1
+
+        # we have broken from the while loop but in most cases there could
+        # be elements remaining on the end of one of the lists passed in,
+        # for now, we don't know which list we reached the end of unfortunately,
+        # so by calling the list operation `extend` on the remaining
+        # chunks, we know one of them will be an empty list resulting in no change
+        # to the merged list
+        merged.extend(l1[i1:len(l1)])
+        merged.extend(l2[i2:len(l2)])
+        return merged
+
+    def _sort(self, array):
+        if len(array) == 1:
+            return array
+
+        half = len(array) / 2
+        left = array[:half]
+        right = array[half:]
+
+        sorted_right = self._sort(right)
+        sorted_left = self._sort(left)
+
+        return self._merge(sorted_left, sorted_right)
+
+    def perform(self):
+        sorted = self._sort(self.unsorted)
+        self.unsorted = sorted
 
 
 if __name__ == "__main__":
-    unsorted = [765, 56, 8, 99, 3, 4, 2945, 56, 2, 20, 60, 1, 500]
-    sorted = mergesort(unsorted)
-    print sorted
+    unsorted = [30, 24, 1, 32, 4, 17, 19, 8, 26, 40, 5]
+    sort = MergeSort(unsorted)
+    sort.perform()
+    sort.display_results()
