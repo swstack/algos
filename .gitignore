@@ -4,3 +4,5 @@
 *.class
 .pydevproject
 *.pyc
+out/
+*.iml

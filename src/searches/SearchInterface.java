@@ -1,4 +1,4 @@
-package time_complexity;
+package searches;
 
 public interface SearchInterface {
 	void setSearchableIntArray(int [] searchData);
