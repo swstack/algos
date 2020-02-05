@@ -4,12 +4,15 @@ public class ResizableArray<T> {
 	Object[] staticArray;
 
 	public ResizableArray() {
-		staticArray = new Object[5];
+		staticArray = new Object[10];
 	}
 
-	@SuppressWarnings("unchecked")
 	public T get(int index) {
-		return (T)staticArray[index];
+		if (index >= staticArray.length) {
+			return null;
+		} else {
+			return (T)staticArray[index];
+		}
 	}
 
 	public void insert(int index, T value) {
@@ -33,18 +36,23 @@ public class ResizableArray<T> {
 		return staticArray.length;
 	}
 
+	public void print() {
+		for (int i = 0; i < staticArray.length; i ++) {
+			System.out.println(String.format("%d: %s", i, staticArray[i]));
+		}
+	}
+
 	public static void main(String[] args) {
 		ResizableArray<String> array = new ResizableArray<>();
 
-		// Insert/get
+		// Insert
 		array.insert(0, "foo");
-		assert array.get(0).equals("foo");
+		array.print();
+		array.insert(4, "foo");
+		array.print();
 
 		// Resize
-		assert array.size() == 5;
-		array.insert(4, "foo");
-		assert array.size() == 5;
-		array.insert(5, "foo");
-		assert array.size() == 10;
+		array.insert(12, "foo");
+		array.print();
 	}
 }

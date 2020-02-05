@@ -1,39 +1,23 @@
 package common;
 
-class Node<T extends Comparable<T>> {
-	public T value;
-	public Node<T> next;
-
-	public Node(T value, Node<T> next) {
-		this.value = value;
-		this.next = next;
-	}
-
-	public boolean isLessThan(Node<T> other) {
-		return this.value.compareTo(other.value) < 0;
-	}
-
-	public boolean isGreaterThan(Node<T> other) {
-		return this.value.compareTo(other.value) > 0;
-	}
-}
-
 public class SinglyLinkedList<T extends Comparable<T>> {
 
 	Node<T> tail = null;  // The first node inserted
 	Node<T> head = null;  // The last node inserted
 
-	public void insert(T value) {
+	public Node<T> insert(T value) {
 		// Insertion time is O(1)
 
+		Node<T> newNode = new Node<>(value, null);
 		if (tail == null && head == null) {
-			tail = new Node<>(value, null);
+			tail = newNode;
 			head = tail;
 		} else {
 			Node<T> previousHead = head;
-			head = new Node<>(value, null);
+			head = newNode;
 			previousHead.next = head;
 		}
+		return newNode;
 	}
 
 	public void insertOrdered(T value) {
@@ -46,7 +30,7 @@ public class SinglyLinkedList<T extends Comparable<T>> {
 			Node<T> newNode = new Node<>(value, null);
 			Node<T> previous = null;
 
-			while(next != null && next.isLessThan(newNode)) {
+			while (next != null && next.isLessThan(newNode)) {
 				previous = next;
 				next = next.next;
 			}
@@ -62,7 +46,7 @@ public class SinglyLinkedList<T extends Comparable<T>> {
 		}
 	}
 
-	SinglyLinkedList<T> order() {
+	public SinglyLinkedList<T> order() {
 		// Order is O(n2)
 
 		SinglyLinkedList<T> newList = new SinglyLinkedList<>();
@@ -75,15 +59,21 @@ public class SinglyLinkedList<T extends Comparable<T>> {
 	}
 
 	public void print() {
+		System.out.println(this.toString());
+	}
+
+	public String toString() {
 		Node<T> n = tail;
-		while(n != null) {
+		StringBuilder out = new StringBuilder();
+		while (n != null) {
 			if (n.next == null) {
-				System.out.println(String.format("%s", n.value));
+				out.append(String.format("%s", n.value));
 			} else {
-				System.out.print(String.format("%s -> ", n.value));
+				out.append(String.format("%s -> ", n.value));
 			}
 			n = n.next;
 		}
+		return out.toString();
 	}
 
 	public static void main(String[] args) {
