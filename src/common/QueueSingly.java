@@ -16,6 +16,10 @@ public class QueueSingly<T> {
 		}
 	}
 
+	boolean isEmpty() {
+		return first == null;
+	}
+
 	void add(T value) {
 		// Add to the beginning of the queue
 		QueueNode newNode = new QueueNode(value);

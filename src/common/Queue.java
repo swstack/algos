@@ -19,6 +19,10 @@ public class Queue<T> {
 		}
 	}
 
+	boolean isEmpty() {
+		return first == null;
+	}
+
 	void add(T value) {
 		// Add to the beginning of the queue
 		QueueNode newNode = new QueueNode(value);
@@ -41,7 +45,7 @@ public class Queue<T> {
 
 		QueueNode node = first;
 		if (first.previous == null) {
-			 first = null;
+			first = null;
 		} else {
 			first = first.previous;
 			first.next = null;
