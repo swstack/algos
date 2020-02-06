@@ -1,21 +1,18 @@
 package common;
 
-/*
-Queue implementation using doubly linked list.
-*/
-public class Queue<T> {
+public class QueueSingly<T> {
 	QueueNode first;  // First in the queue (to be removed)
 	QueueNode last;  // Last in the queue (To be removed)
 
 	class QueueNode {
 		T value;
+
+		// Next points "backwards" towards last
 		QueueNode next;
-		QueueNode previous;
 
 		QueueNode(T value) {
 			this.value = value;
 			this.next = null;
-			this.previous = null;
 		}
 	}
 
@@ -23,14 +20,15 @@ public class Queue<T> {
 		// Add to the beginning of the queue
 		QueueNode newNode = new QueueNode(value);
 
-		if (first == null && last == null) {
-			last = newNode;
-			first = last;
-		} else {
-			last.previous = newNode;
-			newNode.next = last;
-			last = newNode;
+		if (first == null) {
+			first = newNode;
 		}
+
+		if (last != null) {
+			last.next = newNode;
+		}
+
+		last = newNode;
 	}
 
 	T remove() throws Exception {
@@ -40,27 +38,30 @@ public class Queue<T> {
 		}
 
 		QueueNode node = first;
-		if (first.previous == null) {
-			 first = null;
+		if (first.next == null) {
+			first = null;
 		} else {
-			first = first.previous;
-			first.next = null;
+			first = first.next;
 		}
 		return node.value;
 	}
 
-	void print() {
-		QueueNode n = last;
+	public String toString() {
+		StringBuilder out = new StringBuilder();
+		QueueNode n = first;
 		while (n != null) {
-			String next = n.next == null ? "null" : String.format("%s", n.next.value);
-			String previous = n.previous == null ? "null" : String.format("%s", n.previous.value);
-			System.out.println(String.format("%s <- %s -> %s", previous, n.value, next));
+			out.append(String.format(" <- %s", n.value));
 			n = n.next;
 		}
+		return out.toString();
+	}
+
+	void print() {
+		System.out.println(this.toString());
 	}
 
 	public static void main(String[] args) throws Exception {
-		Queue<Integer> queue = new Queue<>();
+		QueueSingly<Integer> queue = new QueueSingly<>();
 		queue.add(1);
 		queue.add(23);
 		queue.add(12);
@@ -77,3 +78,4 @@ public class Queue<T> {
 		System.out.println(String.format("Remove: %s", queue.remove()));
 	}
 }
+
