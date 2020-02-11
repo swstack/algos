@@ -46,7 +46,7 @@ public class AddTwoNumbers {
 		// Reverse list 1
 		Stack<ListNode> stack1 = new Stack<>();
 		ListNode next1 = l1;
-		while(next1 != null) {
+		while (next1 != null) {
 			stack1.push(next1);
 			next1 = next1.next;
 		}
@@ -63,7 +63,7 @@ public class AddTwoNumbers {
 		// Reverse list 2
 		Stack<ListNode> stack2 = new Stack<>();
 		ListNode next2 = l2;
-		while(next2 != null) {
+		while (next2 != null) {
 			stack2.push(next2);
 			next2 = next2.next;
 		}
@@ -106,12 +106,12 @@ public class AddTwoNumbers {
 	}
 
 	public static void main(String[] args) {
-		ListNode y = ListNode.fromArray(new int[]{ 9 });
-		ListNode y1 = ListNode.fromArray(new int[]{ 1,9,9,9,9,9,9,9,9,9 });
+		ListNode y = ListNode.fromArray(new int[]{9});
+		ListNode y1 = ListNode.fromArray(new int[]{1, 9, 9, 9, 9, 9, 9, 9, 9, 9});
 
 		ListNode result = new AddTwoNumbers().addTwoNumbers(y, y1);
 		ListNode next = result;
-		while(next != null) {
+		while (next != null) {
 			System.out.print(String.format("%d ->", next.val));
 			next = next.next;
 		}
@@ -123,7 +123,7 @@ public class AddTwoNumbers {
 		ListNode zero2 = new ListNode(0);
 		ListNode result2 = new AddTwoNumbers().addTwoNumbers(eightone, zero2);
 		ListNode next2 = result2;
-		while(next2 != null) {
+		while (next2 != null) {
 			System.out.print(String.format("%d ->", next2.val));
 			next2 = next2.next;
 		}
