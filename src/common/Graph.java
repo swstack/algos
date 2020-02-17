@@ -110,38 +110,42 @@ public class Graph<T> {
 		System.out.println("");
 	}
 
-	void visitDFS(T value) {
+	void visitDFSIterative(T value) {
 		// Iterative solution using a stack
 
 		Stack<GraphNode<T>> stack = new Stack<>();
-
 		GraphNode<T> next = nodes.get(value);
-		stack.push(next);
 
 		System.out.print("Visiting: ");
 		while (next != null) {
+
+			// Visit the current node if not visited
 			if (!next.visited) {
 				System.out.print(String.format(" %s", next.value));
 				next.visited = true;
 			}
 
-			GraphNode<T> nextChild = null;
+			// Find the first unvisited child and continue iteration, first pushing the current
+			// node onto the stack to continue processing unvisited children later
 			for (GraphNode<T> child : next.children) {
 				if (!child.visited) {
-					nextChild = child;
+					// Push current node onto stack
+					stack.push(next);
+
+					// Continue loop with child as next
+					next = child;
 					break;
 				}
 			}
 
-			if (nextChild != null) {
-				next = nextChild;
-				stack.push(next);
-			} else {
-				try {
-					next = stack.pop();
-				} catch (EmptyStackException _e) {
-					next = null;
-				}
+			// If we were unable to find any unvisited children, pop the stack
+			if (next.visited) {
+ 				if (!stack.isEmpty()) {
+ 					next = stack.pop();
+			    } else {
+ 					// If stack is empty we are done
+ 					next = null;
+			    }
 			}
 		}
 		System.out.println("");
@@ -197,6 +201,7 @@ public class Graph<T> {
 		directedAcyclicGraph.build(
 			new Edge<>(1, 2, 0),
 			new Edge<>(1, 3, 0),
+			new Edge<>(1, 10, 0),
 			new Edge<>(2, 4, 0),
 			new Edge<>(2, 5, 0),
 			new Edge<>(3, 5, 0),
@@ -204,6 +209,7 @@ public class Graph<T> {
 			new Edge<>(6, 7, 0)
 		);
 		directedAcyclicGraph.allPaths(directedAcyclicGraph.nodes.get(1));
+		directedAcyclicGraph.visitDFSIterative(1);
 
 		Graph<Integer> graph = new Graph<>();
 		graph.build(
