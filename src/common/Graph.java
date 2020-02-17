@@ -41,7 +41,7 @@ public class Graph<T> {
 		this.directed = true;
 	}
 
-	private void add(T srcVal, T dstVal, boolean undirected) {
+	private void add(T srcVal, T dstVal, boolean directed) {
 		GraphNode<T> src = nodes.getOrDefault(srcVal, new GraphNode<>(srcVal));
 		if (!nodes.containsKey(srcVal)) {
 			nodes.put(srcVal, src);
@@ -53,7 +53,7 @@ public class Graph<T> {
 		}
 
 		src.children.add(dst);
-		if (undirected) {
+		if (!directed) {
 			dst.children.add(src);
 		}
 	}
@@ -147,10 +147,30 @@ public class Graph<T> {
 		System.out.println("");
 	}
 
+	List<List<T>> allPaths(GraphNode<T> root) {
+		// Only works with directed acyclic graphs
+
+		List<List<T>> paths = new LinkedList<>();
+
+		if (root.children.isEmpty()) {
+			List<T> leafPath = new LinkedList<>();
+			leafPath.add(root.value);
+			paths.add(leafPath);
+		}
+
+		for (GraphNode<T> child : root.children) {
+			List<List<T>> childPaths = allPaths(child);
+			for (List<T> childPath : childPaths) {
+				childPath.add(0, root.value);
+				paths.add(childPath);
+			}
+		}
+		System.out.println(paths);
+		return paths;
+	}
+
 	boolean routeBetween(T valA, T valB) {
 		GraphNode<T> a = this.nodes.get(valA);
-
-
 		GraphNode<T> b = this.nodes.get(valB);
 
 		GraphNode<T> nextA = a;
@@ -172,6 +192,19 @@ public class Graph<T> {
 	}
 
 	public static void main(String[] args) {
+
+		Graph<Integer> directedAcyclicGraph = new Graph<>();
+		directedAcyclicGraph.build(
+			new Edge<>(1, 2, 0),
+			new Edge<>(1, 3, 0),
+			new Edge<>(2, 4, 0),
+			new Edge<>(2, 5, 0),
+			new Edge<>(3, 5, 0),
+			new Edge<>(3, 6, 0),
+			new Edge<>(6, 7, 0)
+		);
+		directedAcyclicGraph.allPaths(directedAcyclicGraph.nodes.get(1));
+
 		Graph<Integer> graph = new Graph<>();
 		graph.build(
 			new Edge<>(1, 5, 0),
@@ -186,11 +219,11 @@ public class Graph<T> {
 			new Edge<>(7, 6, 0)
 		);
 
-		graph.print();
-		graph.visitDFS(1);
-		graph.reset();
-		graph.visitDFSRecursive(1);
-		graph.reset();
-		graph.visitBFS(1);
+//		graph.print();
+//		graph.visitDFS(1);
+//		graph.reset();
+//		graph.visitDFSRecursive(1);
+//		graph.reset();
+//		graph.visitBFS(1);
 	}
 }
