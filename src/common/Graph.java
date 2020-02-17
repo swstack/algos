@@ -147,6 +147,18 @@ public class Graph<T> {
 		System.out.println("");
 	}
 
+	boolean routeBetween(T valA, T valB) {
+		GraphNode<T> a = this.nodes.get(valA);
+
+
+		GraphNode<T> b = this.nodes.get(valB);
+
+		GraphNode<T> nextA = a;
+		GraphNode<T> nextB = b;
+
+		return true;
+	}
+
 	void print() {
 		// Print the graph as an adjacency list
 
