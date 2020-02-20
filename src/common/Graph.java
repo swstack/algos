@@ -174,14 +174,30 @@ public class Graph<T> {
 	}
 
 	boolean routeBetween(T valA, T valB) {
-		GraphNode<T> a = this.nodes.get(valA);
-		GraphNode<T> b = this.nodes.get(valB);
+		GraphNode<T> next = this.nodes.get(valA);
+		Queue<GraphNode<T>> queue = new LinkedList<>();
 
-		GraphNode<T> nextA = a;
-		GraphNode<T> nextB = b;
+		while (next != null) {
 
-		return true;
+			if (next.value == valB) {
+				return true;
+			}
+
+			for (GraphNode<T> child : next.children) {
+				queue.add(child);
+			}
+
+			if (!queue.isEmpty()) {
+				next = queue.remove();
+			} else {
+				next = null;
+			}
+		}
+
+		return false;
 	}
+
+	
 
 	void print() {
 		// Print the graph as an adjacency list
@@ -208,8 +224,10 @@ public class Graph<T> {
 			new Edge<>(3, 6, 0),
 			new Edge<>(6, 7, 0)
 		);
-		directedAcyclicGraph.allPaths(directedAcyclicGraph.nodes.get(1));
-		directedAcyclicGraph.visitDFSIterative(1);
+		boolean found = directedAcyclicGraph.routeBetween(3, 7);
+		System.out.println(found);
+//		directedAcyclicGraph.allPaths(directedAcyclicGraph.nodes.get(1));
+//		directedAcyclicGraph.visitDFSIterative(1);
 
 		Graph<Integer> graph = new Graph<>();
 		graph.build(
