@@ -41,7 +41,7 @@ public class ArrayPermutations {
 	}
 
 	public static void main(String[] args) {
-		List<List<Integer>> perms = new ArrayPermutations().permute(new int[]{1, 2, 3});
-		System.out.println(perms);
+		List<List<Integer>> perms = new ArrayPermutations().permute(new int[]{1, 2, 3, 4, 5});
+		System.out.println(perms.size());
 	}
 }
