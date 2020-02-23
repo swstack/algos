@@ -2,10 +2,10 @@ package graphs;
 
 import common.Listing;
 
-public class BinarySearchTree {
+public class ListingBST {
 	TreeNode root;
 
-	public BinarySearchTree() {
+	public ListingBST() {
 		root = null;
 	}
 
@@ -102,7 +102,7 @@ public class BinarySearchTree {
 	}
 
 	public static void main(String[] args) {
-		BinarySearchTree storage = new BinarySearchTree();
+		ListingBST storage = new ListingBST();
 
 		Listing a = new Listing("steve", "1.2", "5");
 		Listing b = new Listing("pher", "4.2", "3");
