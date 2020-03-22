@@ -7,7 +7,9 @@ import java.util.Set;
 
 public class MinimumHeightTrees {
 	public static HashMap<Integer, List<Integer>> toAdjacencyList(int[][] edges) {
-		// Undirected adjacency list
+		// Undirected adjacency list where each key in the map is a node value and
+		// the value is a list of adjacent nodes. The fact that it is undirected means
+		// each edge generates an adjacent node for both nodes.
 
 		HashMap<Integer, List<Integer>> adj = new HashMap<>();
 		for (int[] edge : edges) {
@@ -51,14 +53,17 @@ public class MinimumHeightTrees {
 	}
 
 	public static List<List<Integer>> allPaths(int root, int[][] edges) {
+		// Edges are represented as a list of edges
+
 		List<Integer> visited = new LinkedList<>();
 		return _allPaths(root, toAdjacencyList(edges), visited);
 	}
 
 	public List<Integer> findMinHeightTrees(int n, int[][] edges) {
 		// Brute force:
-		//  Find every path for every potential root node,
-		//  Find the root node(s) with the shortest longest path.
+		//  - Find every path for every potential root node using DFS and "completing" a path
+		//    once it hits a leaf node, i.e. no unvisited children.
+		//  - Find the root node(s) with the shortest longest path.
 
 		if (n == 1) {
 			List<Integer> list = new LinkedList<>();
@@ -66,6 +71,7 @@ public class MinimumHeightTrees {
 			return list;
 		}
 
+		// Key is the potential root node value, values are list of paths
 		HashMap<Integer, List<Integer>> longestPathRootMap = new HashMap<>();
 		for (int root = 0; root <= n - 1; root++) {
 			List<List<Integer>> rootPaths = allPaths(root, edges);

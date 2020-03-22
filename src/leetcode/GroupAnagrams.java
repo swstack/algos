@@ -7,10 +7,10 @@ import java.util.List;
 
 public class GroupAnagrams {
 	public List<List<String>> groupAnagrams(String[] strs) {
-		HashMap<String, List<String>> anagrams = new HashMap<>();
+		// Hash map of sorted strings
 
+		HashMap<String, List<String>> anagrams = new HashMap<>();
 		for (int i = 0; i < strs.length; i++) {
-			int strVal = 0;
 			char[] charArray = strs[i].toCharArray();
 			Arrays.sort(charArray);
 			String str = new String(charArray);

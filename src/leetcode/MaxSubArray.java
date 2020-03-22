@@ -4,12 +4,11 @@ import java.util.Arrays;
 
 public class MaxSubArray {
 	public int maxSubArray(int[] nums) {
-		int max = 0;
-		int maxIdxStart = 0;
-		int maxIdxEnd = 0;
+		// Sliding window, if the value of the current index is ever greater
+		// than the value of the current window, the window resets.
 
+		int max = 0;
 		int curMax = nums[0];
-		int idxStart = 0;
 		for (int idxEnd = 1; idxEnd < nums.length; idxEnd++) {
 			int curr = nums[idxEnd];
 			curMax = curMax + curr;
@@ -20,7 +19,6 @@ public class MaxSubArray {
 			if (curMax > max) {
 				max = curMax;
 			}
-
 		}
 		System.out.println(max);
 		return max;

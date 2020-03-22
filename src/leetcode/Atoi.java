@@ -55,12 +55,12 @@ public class Atoi {
 			sanitized = sanitized.substring(1);
 		}
 
+		// Build the integer adding to itself and multiplying by 10 each new digit
 		long result = 0;
 		for (int i = 0; i < sanitized.length(); i++) {
 			char c = sanitized.charAt(i);
 
 			if (Character.isDigit(c)) {
-				long tmp = (result * 10) + Character.getNumericValue(c);
 				result = (result * 10) + Character.getNumericValue(c);
 			} else {
 				break;

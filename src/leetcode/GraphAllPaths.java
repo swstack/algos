@@ -102,12 +102,15 @@ public class GraphAllPaths {
 	}
 
 	public List<List<Integer>> allPathsSourceTarget(int source, int target, int[][] graph) {
+		// Recursive DFS, base case is source == target
+
 		List<List<Integer>> paths = new LinkedList<>();
 
 		if (source == target) {
 			List<Integer> path = new LinkedList<>();
 			path.add(source);
 			paths.add(path);
+			System.out.println(paths);
 			return paths;
 		}
 
@@ -145,13 +148,15 @@ public class GraphAllPaths {
 //		new GraphAllPaths().allPathsSourceTarget(0, 4, graph1);
 
 		int[][] graph2 = new int[][]{
-			new int[]{1, 2},
+			new int[]{1, 2, 4},
 			new int[]{3},
 			new int[]{3},
+			new int[]{},
 			new int[]{}
 		};
 
 //		new GraphAllPaths().allPathsRecursive(0, graph2);
-		new GraphAllPaths().allPathsSourceTarget(graph2);
+//		new GraphAllPaths().allPathsSourceTarget(graph2);
+		new GraphAllPaths().allPathsSourceTarget(0, 3, graph2);
 	}
 }

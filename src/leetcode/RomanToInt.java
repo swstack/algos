@@ -6,6 +6,10 @@ public class RomanToInt {
 	HashMap<String, Integer> map;
 
 	public int romanToInt(String s) {
+		// Iterate through the char array of symbols and add each symbol value to the total.
+		// The tricky part is handling 2 character symbols such as IV, IX, etc.
+		// To handle these we must always check the map of symbols i + 1.
+
 		this.map = new HashMap<>();
 		this.map.put("I", 1);
 		this.map.put("IV", 4);

@@ -49,7 +49,11 @@ public class LongestSubstringNoRepeats {
 	}
 
 	public int lengthOfLongestSubstring(String s) {
-		// Map of chars and their index
+		// Sliding window approach, use a hash map to detect dupe chars which starts a new window.
+		// Starting a new window means setting the window start index to the previous index of the
+		// duplicate character.
+		// Keep track of the overall longest window.
+
 		HashMap<Character, Integer> chars = new HashMap<>();
 		int idxCurrentStart = 0;
 		int idxCurrentEnd = 0;

@@ -68,7 +68,15 @@ public class PermutationSequence {
 	}
 
 	public String getPermutation(int n, int k) {
-		// Given the target k, and an understanding of the order of permutations, we can calculate
+		// Generate every permutation, example n = 3:
+		// 123
+		// 132
+		// 213
+		// 231
+		// 312
+		// 321
+
+		// Given the target k, we can calculate
 		// which digit will be first in that iteration of permutations.
 
 		int totalPossiblePermutations = factorial(n);

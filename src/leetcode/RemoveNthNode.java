@@ -13,6 +13,8 @@ public class RemoveNthNode {
 	}
 
 	public ListNode removeNthFromEnd(ListNode head, int n) {
+
+
 		if (head == null)
 			return null;
 

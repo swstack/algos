@@ -26,14 +26,14 @@ public class PathSum {
 		if (next.left != null) {
 			boolean existsLeft = hasPathSumRecursive(next.left, target, total);
 			if (existsLeft) {
-				return existsLeft;
+				return true;
 			}
 		}
 
 		if (next.right != null) {
 			boolean existsRight = hasPathSumRecursive(next.right, target, total);
 			if (existsRight) {
-				return existsRight;
+				return true;
 			}
 		}
 

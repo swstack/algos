@@ -2,6 +2,9 @@ package leetcode;
 
 public class MaxArea {
 	public int maxArea(int[] heights) {
+		// "Container with most water"
+		// Brute force, calculate the area between every single possibility saving the largest
+
 		int maxArea = 0;
 		for (int i = 0; i < heights.length; i++) {
 			for (int y = i + 1; y < heights.length; y++) {

@@ -1,37 +1,32 @@
 package leetcode;
 
 import java.util.Arrays;
-import java.util.Comparator;
 
 public class MergeIntervals {
-	private class IntervalComparator implements Comparator<int[]> {
-		@Override
-		public int compare(int[] a, int[] b) {
-			return a[0] < b[0] ? -1 : a[0] == b[0] ? 0 : 1;
-		}
-	}
 
 	public int[][] sort(int[][] intervals) {
 		// Bubble sort
 
-		int[][] sorted = intervals;
 		for (int i = 0; i < intervals.length; i++) {
 			for (int y = 0; y < intervals.length - 1; y++) {
 				int[] left = intervals[y];
 				int[] right = intervals[y + 1];
 				if (left[0] > right[0]) {
-					sorted[y] = right;
-					sorted[y + 1] = left;
+					intervals[y] = right;
+					intervals[y + 1] = left;
 				} else {
-					sorted[y] = left;
-					sorted[y + 1] = right;
+					intervals[y] = left;
+					intervals[y + 1] = right;
 				}
 			}
 		}
-		return sorted;
+		return intervals;
 	}
 
 	public int[][] merge(int[][] intervals) {
+		// Sort the intervals based on their start value, iterate each interval comparing
+		// the start value with the previous interval end value
+
 		if (intervals.length == 0)
 			return intervals;
 

@@ -23,6 +23,7 @@ public class ArrayPermutations {
 			List<Integer> perm = new LinkedList<>();
 			perm.add(nums[0]);
 			perms.add(perm);
+			System.out.println(perms);
 			return perms;
 		}
 
@@ -37,11 +38,12 @@ public class ArrayPermutations {
 				perms.add(perm);
 			}
 		}
+		System.out.println(perms);
 		return perms;
 	}
 
 	public static void main(String[] args) {
-		List<List<Integer>> perms = new ArrayPermutations().permute(new int[]{1, 2, 3, 4, 5});
+		List<List<Integer>> perms = new ArrayPermutations().permute(new int[]{1, 2, 3});
 		System.out.println(perms.size());
 	}
 }

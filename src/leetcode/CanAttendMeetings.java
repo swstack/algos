@@ -3,7 +3,7 @@ package leetcode;
 public class CanAttendMeetings {
 
 	public int[][] sort(int[][] intervals) {
-		// Bubble sort
+		// Bubble sort intervals based on their start time (left index)
 		int[][] sorted = intervals;
 		for (int i = 0; i < intervals.length; i++) {
 			for (int y = 0; y < intervals.length - 1; y++) {

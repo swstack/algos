@@ -1,7 +1,5 @@
 package leetcode;
 
-import java.util.HashMap;
-
 public class LongestSubstringPalindrome {
 	boolean isPalidrome(String s) {
 		if (s.length() == 1 || s.length() == 0)
@@ -21,6 +19,8 @@ public class LongestSubstringPalindrome {
 	}
 
 	public String longestPalindrome(String s) {
+		// Brute force, generate every single substring checking for longest palindrome
+
 		String longestPalindrome = "";
 		for (int i = 0; i < s.length(); i++) {
 			for (int y = i + 1; y <= s.length(); y++) {

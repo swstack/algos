@@ -52,6 +52,7 @@ public class AddTwoNumbers {
 		}
 
 		// Build int for list 1
+		// Build the integer by multiplying the digi by 10^i where i is the "place"
 		BigInteger sum1 = new BigInteger("0");
 		int i = stack1.size() - 1;
 		while (!stack1.empty()) {

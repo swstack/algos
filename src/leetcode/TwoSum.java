@@ -1,5 +1,7 @@
 package leetcode;
 
+import java.util.Arrays;
+
 public class TwoSum {
 	public int[] twoSum(int[] nums, int target) {
 		int[] result = new int[2];
@@ -8,15 +10,15 @@ public class TwoSum {
 				if (nums[i] + nums[y] == target && i != y) {
 					result[0] = i;
 					result[1] = y;
-					return result;
+					break;
 				}
 			}
 		}
+		System.out.println(Arrays.toString(result));
 		return result;
 	}
 
 	public int[] twoSumSlidingWindow(int[] nums, int target) {
-		// Sliding window O(n) (only works for indexs next to eachother, wont pass
 		int[] result = new int[2];
 		for (int i = 0; i < nums.length; i++) {
 			int left = nums[i];
@@ -25,14 +27,16 @@ public class TwoSum {
 				if (left + right == target) {
 					result[0] = i;
 					result[1] = i + 1;
-					return result;
+					break;
 				}
 			}
 		}
+		System.out.print(Arrays.toString(result));
 		return result;
 	}
 
 	public static void main(String[] args) {
 		new TwoSum().twoSum(new int[]{2, 7, 11, 15}, 9);
+		new TwoSum().twoSum(new int[]{2, 7, 11, 15}, 13);
 	}
 }

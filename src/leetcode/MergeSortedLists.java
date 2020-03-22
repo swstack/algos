@@ -11,6 +11,8 @@ public class MergeSortedLists {
 	}
 
 	public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+		// Create a new sorted list by traversing each list, picking the next smallest value node.
+
 		if (l1 == null) {
 			return l2;
 		}
@@ -44,13 +46,14 @@ public class MergeSortedLists {
 			}
 		}
 
-		// remaining l1
+		// Remaining l1
 		while (next1 != null) {
 			tail.next = next1;
 			tail = tail.next;
 			next1 = next1.next;
 		}
 
+		// Remaining l2
 		while (next2 != null) {
 			tail.next = next2;
 			tail = tail.next;
