@@ -23,7 +23,7 @@ public class IntegerToRoman {
 		this.map.put(900, "CM");
 		this.map.put(1000, "M");
 
-		// Find the greatest divisor, subtract that from the total and repeat
+		// Find the greatest divisor >= to 1, subtract that from the total and repeat
 		StringBuilder roman = new StringBuilder();
 		while (num > 0) {
 			for (int i = divisors.length - 1; i >= 0; i--) {
